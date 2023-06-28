@@ -1,0 +1,16 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pups</title>
+</head>
+<body>
+    <img src="" id="imageBox" />
+</body>
+<script>
+    fetch('https://dog.ceo/api/breeds/image/random').then( async (data) => {
+        url = await data.json()
+        document.getElementById("imageBox").src = url.message
+    })
+</script>
+</html>
