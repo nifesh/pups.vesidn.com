@@ -2,6 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <title>Pups</title>
     <style>
         * {
@@ -23,12 +26,24 @@
 </head>
 <body>
     <div class="imgbox">
+        <h1>Greetings from a <span id="breed"></span></h1>
         <img src="" id="imageBox" />
     </div>
 </body>
 <script>
     fetch('https://dog.ceo/api/breeds/image/random').then( async (data) => {
         url = await data.json()
+        breed = url.message.split("/")[4]
+        breed = breed.split("-")
+
+        if (breed.length = 1) {
+            breed = breed[0].charAt(0).toUpperCase() + breed[0].slice(1);
+        } else if (breed.length = 2) {
+            breed = breed[1].charAt(0).toUpperCase() + breed[1].slice(1) + " " + breed[0].charAt(0).toUpperCase() + breed[0].slice(1);
+        } else {
+            breed = "DOGGO"
+        }
+        document.getElementById("breed").innerText = breed
         document.getElementById("imageBox").src = url.message
     })
 </script>
